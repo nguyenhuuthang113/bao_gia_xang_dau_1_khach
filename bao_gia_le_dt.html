@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Báo giá nhiên liệu Petrolimex</title>
+    <!-- Bootstrap CSS for Layout -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#00003c",
+                        "secondary": "#a63b00",
+                        "on-surface": "#1a1c1e",
+                        "on-surface-variant": "#464653",
+                        "outline-variant": "#c6c5d5",
+                        "surface-container-low": "#f3f3f6",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9fc"
+                    },
+                    "fontFamily": {
+                        "body": ["Be Vietnam Pro", "sans-serif"],
+                        "headline": ["Be Vietnam Pro", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f9f9fc;
+        }
+        
+        .quotation-card {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 4px;
+            /* Based on ROUND_FOUR */
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            padding: 40px;
+            border: 1px solid #e2e2e5;
+        }
+        
+        .price-input {
+            appearance: none;
+            border: none;
+            background: #f3f3f6;
+            width: 100%;
+            text-align: right;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #a63b00;
+            padding: 12px 16px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .price-input:focus {
+            outline: none;
+            background: #ffffff;
+            box-shadow: inset 0 0 0 2px #000080;
+        }
+        
+        .unit-label {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.875rem;
+            color: #464653;
+            pointer-events: none;
+        }
+        
+        .customer-input {
+            border: none;
+            border-bottom: 1px solid #c6c5d5;
+            padding: 4px 0;
+            font-weight: 600;
+            width: 100%;
+            transition: border-color 0.2s;
+        }
+        
+        .customer-input:focus {
+            outline: none;
+            border-bottom: 2px solid #000080;
+        }
+        
+        @media (max-width: 768px) {
+            .quotation-card {
+                margin: 0;
+                padding: 20px;
+                min-height: 100vh;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface">
+    <div class="container">
+        <div class="quotation-card">
+            <!-- Branding Header -->
+            <div class="text-center mb-5">
+                <img alt="Petrolimex Logo" class="mx-auto h-16 w-auto mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKSJOTJZwQ-kbNIdJtqv5O0HT7HXh5C_Loq7lY0b4-JE8SD9Z0O0rpB8q_6jJ95hrWHc1oQEZXgAQr1maDWPyLlkSmrL6vD8a-e-11nCO6z-AQ5KVKvYcGzQ5iewiF4JoIbZj0D0Xt1DeaGsGUWHZtWQIom2YeTsyRsJy2iLz6IER2ei4H-LifJ_tbctnixBUNjJBrUu4BZ3Sx8qSPkNt-aB9NC4pG9FDT3SCQ6tRk2eGir2dSt4couwKFenHiLN2xAuMNWdu3zoM"
+                />
+                <h1 class="text-primary font-bold text-3xl mb-2">Báo giá nhiên liệu</h1>
+            </div>
+            <!-- Customer Info -->
+            <div class="row mb-5 items-end">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-baseline gap-2">
+                        <span class="text-on-surface-variant whitespace-nowrap">Khách hàng:</span>
+                        <input class="customer-input bg-transparent" placeholder="Nhập tên khách hàng..." type="text" value="Vạn Đại Thành" />
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                    <span class="text-on-surface-variant">Ngày báo giá: </span>
+                    <span class="font-bold text-primary" id="current-date"></span>
+                </div>
+            </div>
+            <!-- Product Grid -->
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded border-outline-variant h-100">
+                        <label class="block font-bold text-primary mb-2" for="price-ron95v">Xăng E10 Ron95-V</label>
+                        <div class="relative">
+                            <input class="price-input" id="price-ron95v" inputmode="numeric" placeholder="0" type="text" value="23,125" />
+                            <span class="unit-label">VNĐ/lít</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded border-outline-variant h-100">
+                        <label class="block font-bold text-primary mb-2" for="price-ron95iii">Xăng E10 Ron 95-III</label>
+                        <div class="relative">
+                            <input class="price-input" id="price-ron95iii" inputmode="numeric" placeholder="0" type="text" value="22,225" />
+                            <span class="unit-label">VNĐ/lít</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded border-outline-variant h-100">
+                        <label class="block font-bold text-primary mb-2" for="price-do005sii">DO 0,05S-II</label>
+                        <div class="relative">
+                            <input class="price-input" id="price-do005sii" inputmode="numeric" placeholder="0" type="text" value="26,755" />
+                            <span class="unit-label">VNĐ/lít</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="col-md-6">
+                    <div class="p-3 border rounded border-outline-variant h-100">
+                        <label class="block font-bold text-primary mb-2" for="price-do001sv">DO 0,001S-V</label>
+                        <div class="relative">
+                            <input class="price-input" id="price-do001sv" inputmode="numeric" placeholder="0" type="text" value="28,015" />
+                            <span class="unit-label">VNĐ/lít</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Corporate Footer / Confirmation -->
+            <div class="mt-5 pt-5 border-t border-outline-variant">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Người lập biểu</p>
+                        <div class="h-16"></div>
+                        <p class="font-bold text-primary">Petrolimex Đồng Nai</p>
+                    </div>
+                    <div class="col-6 text-end">
+                        <p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Xác nhận khách hàng</p>
+                        <div class="h-16 flex items-end justify-end">
+                            <div class="border-b border-dashed border-outline-variant w-32"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Thousand separator formatting logic
+        const formatNumber = (value) => {
+            if (!value) return '';
+            const digits = value.replace(/\D/g, '');
+            return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        };
+
+        const inputs = document.querySelectorAll('.price-input');
+
+        inputs.forEach(input => {
+            input.addEventListener('input', function(e) {
+                let cursorPosition = this.selectionStart;
+                let oldLength = this.value.length;
+
+                this.value = formatNumber(this.value);
+
+                let newLength = this.value.length;
+                cursorPosition += (newLength - oldLength);
+
+                if (cursorPosition >= 0) {
+                    this.setSelectionRange(cursorPosition, cursorPosition);
+                }
+            });
+        });
+
+        // Set current date
+        const dateElement = document.getElementById('current-date');
+        const today = new Date();
+        const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+        dateElement.textContent = formattedDate;
+    </script>
+</body>
+
+</html>
